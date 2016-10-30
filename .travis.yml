@@ -1,7 +1,7 @@
 language: generic
 sudo: true
 before_deploy:
-- shyaml get-values deploy.file < .travis.yml | sed 's/.mpy/.py/' | xargs mpy-cross
+- shyaml get-values deploy.file < .travis.yml | sed 's/.mpy/.py/' | xargs -L1 mpy-cross
 before_install:
 - sudo apt-get -yqq update
 - sudo apt-get install -y build-essential git python python-pip
