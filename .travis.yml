@@ -1,6 +1,6 @@
 language: generic
 sudo: true
-before_deply:
+before_deploy:
 - mpy-cross motor.py
 - mpy-cross pca9685.py
 - mpy-cross servo.py
