@@ -13,8 +13,7 @@ before_install:
 - export PATH=$PATH:$PWD/micropython/mpy-cross/
 deploy:
   provider: releases
-  user: $GITHUB_USERNAME
-  password: $GITHUB_PASSWORD
+  api_key: $GITHUB_TOKEN
   file:
   - "motor.mpy"
   - "pca9685.mpy"
