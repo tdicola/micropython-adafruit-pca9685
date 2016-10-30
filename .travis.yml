@@ -1,28 +1,24 @@
 language: generic
-
 sudo: true
-
+before_deply:
+- mpy-cross motor.py
+- mpy-cross pca9685.py
+- mpy-cross servo.py
+- mpy-cross stepper.py
+before_install:
+- sudo apt-get -yqq update
+- sudo apt-get install -y build-essential git python
+- git clone https://github.com/adafruit/micropython.git
+- make -C micropython/mpy-cross
+- export PATH=$PATH:$PWD/micropython/mpy-cross/
 deploy:
   provider: releases
-  api_key: "GITHUB OAUTH TOKEN"
+  api_key:
+    secure: UFM/UF1eiRtvHyafa4rUIIRwvwZdUJrKkjAqoOJwI2RMncK97AItjZfvVGyuYyZORRMll2oWym6VPF7Jn2JK0irYCeYjABwRGNc5HD/QskIaozhtfBvLQBV41gNBQNBrENIUVB4Ryb4rNRILoev2a2CK8IMAzkhec9ojWE+a0F+gV4V1Jr8u3VEE3uLPIormWrVw8AWoc/ZQ3wfsvvndDK0JJPo2JNete12QtjLJzKXasC2ahv5Be/n4pATyXtci2n+mGmMg+QJl189btFryf/c98u8yBNCLV4dqtKg0KhHY/N+hxgrDp9PV1KRoCnvm85+duGbLOfNsNkkjRek5yrhCgZmg6AJ0SAR2M224bvP+XwRclg/LEZT8GXymR/2qAXCnjUjE032hgvgAOkXzrMPwG4/ipFwHEHcJCHZI04LJX+T+EfGYUnNSym4QdTlPyT/qXQysD8hSMrBhcIj344FKXZXa0GDaSI+mEiHSSzHfpKsVfqtVzjKEBu2E5tVmN58xja7hbRg4BLailx5mZ7PsoDVHwDCngEych7WqCfO1p7dCaDSK/QeENr8c4Y6GuCiMEBUEbg6EAtuhhiz3/N/+4cKy5TOhZMu1kUIezqUlQxrqYr3KnioW1leArYkXYI4J6Ti1qVdGE3eMQYZHHbgZUSfuo0d3AyIX3KbOZxE=
   file:
-    - "motor.mpy"
-    - "pca9685.mpy"
-    - "servo.mpy"
-    - "stepper.mpy"
-  skip_cleanup: true
+  - "motor.mpy"
+  - "pca9685.mpy"
+  - "servo.mpy"
+  - "stepper.mpy"
   on:
     tags: true
-
-before_deply:
-  - mpy-cross motor.py
-  - mpy-cross pca9685.py
-  - mpy-cross servo.py
-  - mpy-cross stepper.py
-
-before_install:
-  - sudo apt-get -yqq update
-  - sudo apt-get install -y build-essential git python
-  - git clone https://github.com/adafruit/micropython.git
-  - make -C micropython/mpy-cross
-  - export PATH=$PATH:$PWD/micropython/mpy-cross/
