@@ -20,5 +20,6 @@ deploy:
   - "pca9685.mpy"
   - "servo.mpy"
   - "stepper.mpy"
+  skip_cleanup: true
   on:
     tags: true
